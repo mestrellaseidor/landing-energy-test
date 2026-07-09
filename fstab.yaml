@@ -1,5 +1,0 @@
-mountpoints:
-  /:
-    url: "https://author-p101002-e986190.adobeaemcloud.com/bin/franklin.delivery/mestrellaseidor/landing-energy-test/main"
-    type: "markup"
-    suffix: ".html"

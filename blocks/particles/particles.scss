@@ -1,0 +1,149 @@
+@import "../../styles/scss/mixins";
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.viewport,
+.front-viewport {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.ruler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 100%;
+}
+
+.slides {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.overlay-components-wrapper {
+  position: fixed;
+  top: var(--header-height, 0px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  padding: vw(40) vw(97) vw(90) vw(97);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  pointer-events: none;
+
+  > * {
+    grid-column: 1 / 13;
+    grid-row: 1 / 13;
+  }
+}
+
+.interaction-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: transparent;
+}
+
+.viewport {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  &.is-in-front {
+    z-index: 7;
+  }
+}
+
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(72.02% 87% at -30.72% 124.82%, rgba(246, 61, 120, 0.16) 0%, rgba(246, 61, 120, 0) 100%),
+  radial-gradient(50.12% 73.11% at 0% 0%, rgba(255, 199, 0, 0.08) 0%, rgba(255, 199, 0, 0) 100%),
+  radial-gradient(100.59% 146.79% at 134.93% -38.77%, rgba(245, 13, 54, 0.16) 0%, rgba(245, 13, 54, 0) 100%),
+  radial-gradient(54.5% 79.54% at 104.6% 106.5%, rgba(255, 153, 3, 0.16) 0%, rgba(255, 153, 3, 0) 100%);
+}
+
+.front-viewport {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.bg-custom {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+
+  &.bg-custom-visible {
+    opacity: 1;
+  }
+}
+
+.gui {
+  position: fixed;
+  top: vw(8);
+  right: vw(8);
+  z-index: 10;
+  max-height: 95vh;
+  overflow-y: auto;
+}
+
+.chevron {
+  position: fixed;
+  bottom: vw(32);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.25);
+  padding: vw(12);
+  border-radius: 50%;
+  transition: color 0.2s, background 0.2s;
+  animation: bounce 2s infinite;
+
+  &:hover {
+    color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(vw(6));
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}

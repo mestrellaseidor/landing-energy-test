@@ -1,0 +1,127 @@
+.text-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .text-overlay-inner {
+    position: relative;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.text-entry {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: #001E37;
+  text-align: center;
+  max-width: 80vw;
+  width: 100%;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+
+  transition: opacity 1.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+  transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform, opacity;
+
+  @media (max-width: 768px) {
+    font-size: calc(var(--text-size, 32px) / 2);
+  }
+}
+
+/* Animations */
+.anim-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.anim-fade-start {
+  opacity: 0;
+}
+
+.anim-slide-up-start {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.anim-slide-down-start {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.anim-slide-left-start {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.anim-slide-right-start {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.anim-zoom-in-start {
+  opacity: 0;
+  transform: scale(5);
+}
+
+.anim-zoom-out-start {
+  opacity: 0;
+  transform: translateX(110vw);
+}
+
+/* Alterna dirección de salida por índice — igual que Vue odd/even */
+.text-entry:nth-child(even).anim-zoom-out-start {
+  transform: translateX(-110vw);
+}
+
+/* split words */
+.split-word {
+  display: inline-block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+
+  &.anim-fade-start {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  &.anim-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* typewriter */
+.typewriter-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid currentColor;
+  width: 0;
+
+  animation: typewriter 1.5s steps(var(--tw-len, 20)) forwards,
+  blink-caret 0.6s step-end 4;
+}
+
+.anim-visible .typewriter-text {
+  width: 100%;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}

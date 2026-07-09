@@ -1,6 +1,69 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
+/******************
+*** TEXT STYLES *** 
+*******************/
+/* ESTAS SON GENERADAS A MANO, NO ELIMINAR */
+:root {
+  --rds-caption-01: 0.875rem/1.125rem RepsolSoleTextRegular;
+  --rds-caption-01-bold: 0.875rem/1.125rem RepsolSoleTextBold;
+  --rds-caption-01-underline: 0.875rem/1.125rem RepsolSoleTextRegular;
+  --rds-caption-02: 0.75rem/1rem RepsolSoleTextRegular;
+  --rds-caption-02-bold: 0.75rem/1rem RepsolSoleTextBold;
+  --rds-caption-02-underline: 0.75rem/1rem RepsolSoleTextRegular;
+  --rds-caption-tag: 0.75rem/1rem RepsolSoleTextRegular;
+  --rds-body-01: 1rem/1.5rem RepsolSoleTextRegular;
+  --rds-body-02: 0.875rem/1.25rem RepsolSoleTextRegular;
+  --rds-body-01-bold: 1rem/1.5rem RepsolSoleTextBold;
+  --rds-body-01-underline: 1rem/1.3125rem RepsolSoleTextRegular;
+  --rds-body-02-bold: 0.875rem/1.25rem RepsolSoleTextBold;
+  --rds-body-02-underline: 0.875rem/1.25rem RepsolSoleTextRegular;
+  --rds-button-01: 1rem/1.5rem RepsolSoleTextBold;
+  --rds-button-02: 0.875rem/1.25rem RepsolSoleTextBold;
+  --rds-monospaced-body-01: 1rem/1.5rem SourceCodeProRegular;
+  --rds-monospaced-body-01-bold: 1rem/1.5rem SourceCodeProBold;
+  --rds-monospaced-body-02: 0.875rem/1.25rem SourceCodeProRegular;
+  --rds-monospaced-body-02-bold: 0.875rem/1.25rem SourceCodeProBold;
+  --rds-monospaced-caption-01: 0.875rem/1.125rem SourceCodeProRegular;
+  --rds-monospaced-caption-01-bold: 0.875rem/1.125rem SourceCodeProBold;
+  --rds-monospaced-caption-02: 0.75rem/1rem SourceCodeProRegular;
+  --rds-monospaced-caption-02-bold: 0.75rem/1rem SourceCodeProBold;
+  --rds-title-01: 1.125rem/1.625rem RepsolSoleTextBold;
+  --rds-title-02: 1rem/1.5rem RepsolSoleTextBold;
+  --rds-headline-00-sd: 2.5rem/3rem RepsolSoleDisplayRegular;
+  --rds-headline-00-md: 3.5rem/4.25rem RepsolSoleDisplayRegular;
+  --rds-headline-00-ld: 4rem/5rem RepsolSoleDisplayRegular;
+  --rds-headline-00-xd: 4.5rem/5.75rem RepsolSoleDisplayRegular;
+  --rds-headline-01-sd: 2rem/2.5rem RepsolSoleDisplayRegular;
+  --rds-headline-01-md: 2.5rem/3rem RepsolSoleDisplayRegular;
+  --rds-headline-01-ld: 3rem/3.75rem RepsolSoleDisplayRegular;
+  --rds-headline-01-xd: 3.5rem/4.25rem RepsolSoleDisplayRegular;
+  --rds-headline-02-sd: 1.75rem/2.25rem RepsolSoleDisplayRegular;
+  --rds-headline-02-md: 2rem/2.5rem RepsolSoleDisplayRegular;
+  --rds-headline-02-ld: 2.25rem/3rem RepsolSoleDisplayRegular;
+  --rds-headline-02-xd: 2.75rem/3.5rem RepsolSoleDisplayRegular;
+  --rds-headline-03-sd: 1.375rem/1.875rem RepsolSoleDisplayRegular;
+  --rds-headline-03-md: 1.5rem/2rem RepsolSoleDisplayRegular;
+  --rds-headline-03-ld: 1.75rem/2.25rem RepsolSoleDisplayRegular;
+  --rds-headline-03-xd: 2rem/2.5rem RepsolSoleDisplayRegular;
+  --rds-headline-04-sd: 1.125rem/1.625rem RepsolSoleDisplayRegular;
+  --rds-headline-04-md: 1.125rem/1.625rem RepsolSoleDisplayRegular;
+  --rds-headline-04-ld: 1.25rem/1.75rem RepsolSoleDisplayRegular;
+  --rds-headline-04-xd: 1.5rem/2rem RepsolSoleDisplayRegular;
+  --rds-numbers-00-sd: 3.5rem/4.25rem RepsolSoleDisplayRegular;
+  --rds-numbers-00-md: 3.5rem/4.25rem RepsolSoleDisplayRegular;
+  --rds-numbers-00-ld: 7rem/8.5rem RepsolSoleDisplayRegular;
+  --rds-numbers-00-xd: 7rem/8.5rem RepsolSoleDisplayRegular;
+  --rds-numbers-01-sd: 2.25rem/2.75rem RepsolSoleDisplayRegular;
+  --rds-numbers-01-md: 2.25rem/2.75rem RepsolSoleDisplayRegular;
+  --rds-numbers-01-ld: 3rem/3.75rem RepsolSoleDisplayRegular;
+  --rds-numbers-01-xd: 3rem/3.75rem RepsolSoleDisplayRegular;
+  --rds-numbers-02-sd: 1.75rem/2.25rem RepsolSoleDisplayRegular;
+  --rds-numbers-02-md: 1.75rem/2.25rem RepsolSoleDisplayRegular;
+  --rds-numbers-02-ld: 2.5rem/3rem RepsolSoleDisplayRegular;
+  --rds-numbers-02-xd: 2.5rem/3rem RepsolSoleDisplayRegular;
+  --rds-numbers-03-sd: 1.5rem/2rem RepsolSoleDisplayRegular;
+  --rds-numbers-03-md: 1.5rem/2rem RepsolSoleDisplayRegular;
+  --rds-numbers-03-ld: 1.75rem/2.25rem RepsolSoleDisplayRegular;
+  --rds-numbers-03-xd: 1.75rem/2.25rem RepsolSoleDisplayRegular;
 }
 
 .hero {
@@ -8,14 +71,21 @@
   padding: 40px 24px;
   min-height: 300px;
 }
-
+@media (width >= 900px) {
+  .hero {
+    padding: 40px 32px;
+  }
+}
+.hero-container .hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
 .hero h1 {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  color: var(--background-color);
+  color: #ffffff;
 }
-
 .hero picture {
   position: absolute;
   z-index: -1;
@@ -23,15 +93,10 @@
   object-fit: cover;
   box-sizing: border-box;
 }
-
 .hero img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
-}
+/*# sourceMappingURL=hero.css.map */

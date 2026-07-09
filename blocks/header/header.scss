@@ -1,0 +1,103 @@
+@import "../../styles/scss/mixins";
+
+.app-header {
+  position: fixed;
+  top: vw(0);
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  padding: vw(30) vw(40);
+
+  .title {
+    font-weight: 700;
+    font-size: 26px;
+    background: linear-gradient(270.85deg, #E60352 -0.77%, #FF8506 100.53%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .step-nav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.logo {
+  height: vw(32);
+  width: auto;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #001e37;
+  border-radius: vw(100);
+  padding: vw(6) vw(21);
+  gap: vw(2);
+  width: fit-content;
+}
+
+.step-nav-item {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: vw(17) vw(26);
+  border-radius: vw(74);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: vw(0.25);
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: #fff !important;
+  }
+
+  &.active {
+    background: #fa3354;
+  }
+
+  &.disabled {
+    cursor: default;
+    opacity: 1;
+    pointer-events: none;
+  }
+}
+
+.step-nav-item.active .nav-text {
+  background-clip: text, text;
+  background-image:
+          linear-gradient(white, white),
+          linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: var(--progress-size, 100%) 100%, 100% 100%;
+  color: transparent;
+  -webkit-background-clip: text, text;
+}
+
+@media (max-width: 480px) {
+  .step-nav {
+    height: vw(42);
+    top: vw(16);
+  }
+
+  .step-nav-item {
+    font-size: vw(12);
+    height: vw(34);
+    padding: 0 vw(4);
+  }
+}

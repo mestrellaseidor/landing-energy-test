@@ -1,0 +1,30 @@
+@use "energy-foundations/dist/style.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #fff5f0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+#measure {
+  position: absolute;
+  visibility: hidden;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}

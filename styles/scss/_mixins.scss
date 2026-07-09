@@ -1,0 +1,19 @@
+$vw-enable: true;
+
+@function vw($value) {
+  @if $vw-enable {
+    $vw-value: $value * 1vw;
+    @return calc(var(--vw-rr) * (#{$vw-value} / (var(--vw-base) * 0.01)));
+  }
+  @return $value;
+}
+
+$vh-enable: true;
+
+@function vh($value) {
+  @if $vh-enable {
+    $vh-value: $value * 1vh;
+    @return calc(var(--vh-rr) * (#{$vh-value} / (var(--vh-base) * 0.01)));
+  }
+  @return $value;
+}

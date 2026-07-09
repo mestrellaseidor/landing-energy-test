@@ -1,6 +1,7 @@
 import {
   loadHeader,
   loadFooter,
+  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -49,7 +50,7 @@ export function moveInstrumentation(from, to) {
  * load fonts.css and set a session storage flag
  */
 async function loadFonts() {
-  await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+  await loadCSS(`${window.hlx.codeBasePath}/styles/css/fonts.css`);
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
@@ -71,55 +72,17 @@ function buildAutoBlocks() {
 }
 
 /**
- * Decorates formatted links to style them as buttons.
- * @param {HTMLElement} main The main container element
- */
-export function decorateButtons(main) {
-  main.querySelectorAll('p a[href]').forEach((a) => {
-    a.title = a.title || a.textContent;
-    const p = a.closest('p');
-    const text = a.textContent.trim();
-
-    // quick structural checks
-    if (a.querySelector('img') || p.textContent.trim() !== text) return;
-
-    // skip URL display links
-    try {
-      if (new URL(a.href).href === new URL(text, window.location).href) return;
-    } catch { /* continue */ }
-
-    // require authored formatting for buttonization
-    const strong = a.closest('strong');
-    const em = a.closest('em');
-    if (!strong && !em) return;
-
-    p.className = 'button-wrapper';
-    a.className = 'button';
-    if (strong && em) { // high-impact call-to-action
-      a.classList.add('accent');
-      const outer = strong.contains(em) ? strong : em;
-      outer.replaceWith(a);
-    } else if (strong) {
-      a.classList.add('primary');
-      strong.replaceWith(a);
-    } else {
-      a.classList.add('secondary');
-      em.replaceWith(a);
-    }
-  });
-}
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  // hopefully forward compatible button decoration
+  decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-  decorateButtons(main);
 }
 
 /**
@@ -147,6 +110,52 @@ async function loadEager(doc) {
 }
 
 /**
+ * Setup viewport and css sizes
+ */
+const FIGMA_DESKTOP_VIEWPORT = { width: 1440, height: 1024 };
+const FIGMA_MOBILE_VIEWPORT = { width: 812, height: 375 };
+const MAX_DESKTOP_WIDTH = 1367;
+const MIN_DESKTOP_WIDTH = 1000;
+
+function getDevice() {
+  return window.innerWidth <= 768 ? 'mobile' : 'desktop';
+}
+
+function setResponsiveCssVars() {
+  const measureEl = document.getElementById('measure');
+  if (!measureEl) return;
+
+  let measuredWidth = measureEl.clientWidth;
+  const measuredHeight = measureEl.clientHeight;
+
+  let ratioW = 1;
+  let ratioH = 1;
+  const device = getDevice();
+
+  if (device === 'mobile') {
+    if (measuredWidth < measuredHeight) {
+      ratioW = measuredHeight / measuredWidth;
+      ratioH = 1;
+    } else {
+      ratioW = 1;
+      ratioH = measuredWidth / measuredHeight;
+    }
+  } else {
+    if (measuredWidth < MIN_DESKTOP_WIDTH) measuredWidth = MIN_DESKTOP_WIDTH;
+    if (measuredWidth > MAX_DESKTOP_WIDTH) measuredWidth = MAX_DESKTOP_WIDTH;
+    ratioW = measuredWidth / measureEl.clientWidth;
+    ratioH = measuredHeight / measureEl.clientHeight;
+  }
+
+  const viewport = device === 'mobile' ? FIGMA_MOBILE_VIEWPORT : FIGMA_DESKTOP_VIEWPORT;
+
+  document.documentElement.style.setProperty('--vw-base', viewport.width);
+  document.documentElement.style.setProperty('--vh-base', viewport.height);
+  document.documentElement.style.setProperty('--vw-rr', ratioW.toString());
+  document.documentElement.style.setProperty('--vh-rr', ratioH.toString());
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -154,6 +163,9 @@ async function loadLazy(doc) {
   loadHeader(doc.querySelector('header'));
 
   const main = doc.querySelector('main');
+  const measureElement = document.createElement('div');
+  measureElement.setAttribute('id', 'measure');
+  main.appendChild(measureElement);
   await loadSections(main);
 
   const { hash } = window.location;
@@ -162,8 +174,18 @@ async function loadLazy(doc) {
 
   loadFooter(doc.querySelector('footer'));
 
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/css/lazy-styles.css`);
   loadFonts();
+
+  setResponsiveCssVars();
+
+  const measureEl = document.getElementById('measure');
+  if (measureEl) {
+    const resizeObserver = new ResizeObserver(() => setResponsiveCssVars());
+    resizeObserver.observe(measureEl);
+  }
+
+  window.addEventListener('resize', setResponsiveCssVars);
 }
 
 /**
