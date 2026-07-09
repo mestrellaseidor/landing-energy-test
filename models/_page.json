@@ -21,6 +21,66 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "json-ld",
+          "label": "json-ld"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "og:title",
+          "label": "Open Graph Title"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "og:description",
+          "label": "Open Graph Description"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "og:image",
+          "label": "Open Graph Image"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "og:type",
+          "label": "Open Graph Type"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "og:url",
+          "label": "Open Graph URL"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "twitter:card",
+          "label": "Twitter Card"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "twitter:title",
+          "label": "Twitter Title"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "twitter:description",
+          "label": "Twitter Description"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "twitter:image",
+          "label": "Twitter Image"
         }
       ]
     }
