@@ -10,22 +10,35 @@
 <!-- hreflang alternates (auto-generated from path) -->
 <script nonce="aem">
   (() => {
-    const HOST = 'https://main--landing-energy-test--mestrellaseidor.aem.live';
-    const langs = { es: 'es-ES', en: 'en-GB', pt: 'pt-PT' };
-    const seg = window.location.pathname.split('/').filter(Boolean)[0];
-    if (!langs[seg]) return;
-    const head = document.head;
-    for (const [code, hl] of Object.entries(langs)) {
-      const link = document.createElement('link');
-      link.rel = 'alternate';
-      link.hreflang = hl;
-      link.href = `${HOST}/${code}/`;
-      head.appendChild(link);
+    try {
+      const HOST = 'https://main--landing-energy-test--mestrellaseidor.aem.live';
+      const langs = { es: 'es-ES', en: 'en-GB', pt: 'pt-PT' };
+      const pathname = window.location.pathname;
+      const seg = pathname.split('/').filter(Boolean)[0];
+      console.log('[hreflang] init', { pathname, seg, valid: !!langs[seg] });
+      if (!langs[seg]) {
+        console.log('[hreflang] early return: seg not in langs');
+        return;
+      }
+      const head = document.head;
+      console.log('[hreflang] head element:', head, 'childCount before:', head.childElementCount);
+      for (const [code, hl] of Object.entries(langs)) {
+        const link = document.createElement('link');
+        link.rel = 'alternate';
+        link.hreflang = hl;
+        link.href = `${HOST}/${code}/`;
+        head.appendChild(link);
+        console.log('[hreflang] appended', hl, '->', link.href);
+      }
+      const xdef = document.createElement('link');
+      xdef.rel = 'alternate';
+      xdef.hreflang = 'x-default';
+      xdef.href = `${HOST}/es/`;
+      head.appendChild(xdef);
+      console.log('[hreflang] appended x-default ->', xdef.href);
+      console.log('[hreflang] done. childCount after:', head.childElementCount);
+    } catch (err) {
+      console.error('[hreflang] FAILED:', err);
     }
-    const xdef = document.createElement('link');
-    xdef.rel = 'alternate';
-    xdef.hreflang = 'x-default';
-    xdef.href = `${HOST}/es/`;
-    head.appendChild(xdef);
   })();
 </script>
