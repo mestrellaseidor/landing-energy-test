@@ -1,5 +1,22 @@
 sitemaps:
   default:
-    source: /query-index.json
+    source: /es/query-index.json
     destination: /sitemap.xml
     lastmod: YYYY-MM-DD
+    languages:
+      es:
+        source: /es/query-index.json
+        destination: /es/sitemap.xml
+        hreflang: es-ES
+        alternate: /es/
+        default: true
+      en:
+        source: /en/query-index.json
+        destination: /en/sitemap.xml
+        hreflang: en-GB
+        alternate: /en/
+      pt:
+        source: /pt/query-index.json
+        destination: /pt/sitemap.xml
+        hreflang: pt-PT
+        alternate: /pt/
