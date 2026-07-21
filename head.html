@@ -7,3 +7,25 @@
 <script nonce="aem" src="/scripts/aem.js" type="module"></script>
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
 <link rel="stylesheet" href="/styles/css/styles.css"/>
+<!-- hreflang alternates (auto-generated from path) -->
+<script nonce="aem">
+  (() => {
+    const HOST = 'https://main--landing-energy-test--mestrellaseidor.aem.live';
+    const langs = { es: 'es-ES', en: 'en-GB', pt: 'pt-PT' };
+    const seg = window.location.pathname.split('/').filter(Boolean)[0];
+    if (!langs[seg]) return;
+    const head = document.head;
+    for (const [code, hl] of Object.entries(langs)) {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = hl;
+      link.href = `${HOST}/${code}/`;
+      head.appendChild(link);
+    }
+    const xdef = document.createElement('link');
+    xdef.rel = 'alternate';
+    xdef.hreflang = 'x-default';
+    xdef.href = `${HOST}/es/`;
+    head.appendChild(xdef);
+  })();
+</script>
