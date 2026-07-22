@@ -22,10 +22,10 @@
         "label": "Keywords"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "valueType": "string",
         "name": "json-ld",
-        "label": "json-ld"
+        "label": "JSON-LD Structured Data"
       },
       {
         "component": "text",

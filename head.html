@@ -8,38 +8,4 @@
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
 <link rel="stylesheet" href="/styles/css/styles.css"/>
 <meta name="google-site-verification" content="0fvcJ_G4SczILYWDFffMU1c9JZqodN9WUfLmYgnW0vA" />
-<!-- hreflang alternates (auto-generated from path) -->
-<script nonce="aem">
-  (() => {
-    try {
-      const HOST = 'https://main--landing-energy-test--mestrellaseidor.aem.live';
-      const langs = { es: 'es-ES', en: 'en-GB', pt: 'pt-PT' };
-      const pathname = window.location.pathname;
-      const seg = pathname.split('/').filter(Boolean)[0];
-      console.log('[hreflang] init', { pathname, seg, valid: !!langs[seg] });
-      if (!langs[seg]) {
-        console.log('[hreflang] early return: seg not in langs');
-        return;
-      }
-      const head = document.head;
-      console.log('[hreflang] head element:', head, 'childCount before:', head.childElementCount);
-      for (const [code, hl] of Object.entries(langs)) {
-        const link = document.createElement('link');
-        link.rel = 'alternate';
-        link.hreflang = hl;
-        link.href = `${HOST}/${code}/`;
-        head.appendChild(link);
-        console.log('[hreflang] appended', hl, '->', link.href);
-      }
-      const xdef = document.createElement('link');
-      xdef.rel = 'alternate';
-      xdef.hreflang = 'x-default';
-      xdef.href = `${HOST}/es/`;
-      head.appendChild(xdef);
-      console.log('[hreflang] appended x-default ->', xdef.href);
-      console.log('[hreflang] done. childCount after:', head.childElementCount);
-    } catch (err) {
-      console.error('[hreflang] FAILED:', err);
-    }
-  })();
-</script>
+<!-- hreflang alternates are emitted via helix-sitemap.yaml (es/en/pt) -->
